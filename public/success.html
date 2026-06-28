@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success — ASMIRE</title>
+  <meta name="description" content="Your payment was processed successfully. Thank you for shopping with ASMIRE.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <!-- ─── HEADER / NAVIGATION ──────────────────────────────── -->
+  <nav class="navbar solid" id="main-nav">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        ASMIRE<span>.</span>
+      </a>
+      
+      <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="navbar-actions">
+        <a href="cart.html" aria-label="View shopping cart" style="position: relative; display: flex; align-items: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- ─── SUCCESS STATUS CARD ──────────────────────────────── -->
+  <main class="container">
+    <div class="status-card">
+      <div class="status-icon success" aria-label="Success checkmark">✓</div>
+      <h1>Order Confirmed!</h1>
+      <p>Thank you for choosing ASMIRE. Your payment was verified successfully and your order has been received.</p>
+
+      <div class="order-receipt-box">
+        <div class="receipt-row">
+          <span>Order Reference UUID</span>
+          <span id="receipt-uuid">Loading...</span>
+        </div>
+        <div class="receipt-row" id="receipt-ref-row">
+          <span id="receipt-ref-label">eSewa Reference ID</span>
+          <span id="receipt-ref">Loading...</span>
+        </div>
+        <div class="receipt-row">
+          <span>Payment Method</span>
+          <span id="receipt-method">eSewa</span>
+        </div>
+        <div class="receipt-row bold">
+          <span>Amount</span>
+          <span id="receipt-amount">Rs. 0</span>
+        </div>
+      </div>
+
+      <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+    </div>
+  </main>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer class="footer" style="margin-top: var(--space-4xl);">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">ASMIRE<span>.</span></a>
+          <p>Luxurious essentials designed to frame personality, built with timeless structural details.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Pinterest">PI</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Catalog</h4>
+          <ul>
+            <li><a href="shop.html?category=tops">Tops</a></li>
+            <li><a href="shop.html?category=bottoms">Bottoms</a></li>
+            <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+            <li><a href="shop.html?category=accessories">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="about.html">Our Studio</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">eSewa Checkout Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Newsletter</h4>
+          <p class="text-secondary" style="font-size: var(--text-sm); margin-bottom: var(--space-md);">Subscribe to updates on drops and styling guides.</p>
+          <div class="footer-newsletter">
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
+              <button type="submit">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ASMIRE. Designed by Google DeepMind Team. eSewa sandbox test enabled.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const uuid = urlParams.get('uuid');
+      const ref = urlParams.get('ref');
+      const amount = urlParams.get('amount');
+      const status = urlParams.get('status');
+      const method = urlParams.get('method'); // 'cod' or undefined (esewa)
+
+      const isCOD = method === 'cod';
+
+      // Update heading based on payment method
+      if (isCOD) {
+        document.querySelector('h1').textContent = 'Order Placed!';
+        document.querySelector('.status-card > p').textContent = 'Thank you for your order! Your ASMIRE garments will be dispatched soon. Pay on delivery when your order arrives.';
+      }
+
+      if (uuid) {
+        document.getElementById('receipt-uuid').textContent = uuid;
+      } else {
+        document.getElementById('receipt-uuid').textContent = 'N/A';
+      }
+
+      // Handle reference row for COD vs eSewa
+      const refLabel = document.getElementById('receipt-ref-label');
+      const refEl = document.getElementById('receipt-ref');
+      if (isCOD) {
+        if (refLabel) refLabel.textContent = 'Payment Status';
+        if (refEl) {
+          refEl.textContent = 'Pay on Delivery';
+          refEl.style.color = 'var(--color-accent)';
+        }
+      } else {
+        if (ref) {
+          if (refEl) refEl.textContent = ref;
+        } else if (status === 'unverified') {
+          if (refEl) { refEl.textContent = 'Pending (Verification Delayed)'; refEl.style.color = 'var(--color-accent)'; }
+        } else {
+          if (refEl) refEl.textContent = 'Pending Callback';
+        }
+      }
+
+      // Update payment method label
+      const methodEl = document.getElementById('receipt-method');
+      if (methodEl) methodEl.textContent = isCOD ? 'Cash on Delivery' : 'eSewa';
+
+      if (amount) {
+        document.getElementById('receipt-amount').textContent = 'Rs. ' + parseFloat(amount).toLocaleString();
+      }
+      // Update amount label for COD
+      const amountLabel = document.querySelector('.receipt-row.bold span:first-child');
+      if (amountLabel && isCOD) amountLabel.textContent = 'Amount Payable';
+
+      // IMPORTANT: Clear cart now that purchase was completed!
+      if (typeof clearCart === 'function') {
+        clearCart();
+        // Clear promo code flags
+        sessionStorage.removeItem('asmire_promo_applied');
+      }
+    });
+  </script>
+</body>
+</html>

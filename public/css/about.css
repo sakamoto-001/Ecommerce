@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════════════════
+   ASMIRE — About Page Styles
+   Brand Story layout, Studio images, Craftsmanship grids
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── INTRO DETAILS ────────────────────────────────────── */
+.about-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: var(--text-lg);
+  line-height: 1.9;
+  color: var(--color-text-secondary);
+  font-weight: 300;
+}
+
+.about-intro p {
+  margin-bottom: var(--space-xl);
+}
+
+/* ─── SPLIT SECTION GRIDS ───────────────────────────────── */
+.about-split {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+.about-split.reverse {
+  direction: rtl;
+}
+
+/* Fix direction layout text alignment */
+.about-split.reverse .about-split-content {
+  direction: ltr;
+}
+
+.about-split-img {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  aspect-ratio: 4 / 5;
+}
+
+.about-split-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-split-content h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+  font-size: var(--text-3xl);
+}
+
+.about-split-content h2 span {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.about-split-content p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: var(--space-lg);
+}
+
+/* ─── VALUES GRID ───────────────────────────────────────── */
+.values-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.value-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.value-card:hover {
+  border-color: var(--color-border-light);
+  transform: translateY(-4px);
+}
+
+.value-card-icon {
+  font-size: 32px;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+}
+
+.value-card h3 {
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+}
+
+.value-card p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 992px) {
+  .about-split {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .about-split-img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}

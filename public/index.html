@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASMIRE — Premium Unisex Clothing & Essentials</title>
+  <meta name="description" content="Explore ASMIRE, the premium gender-neutral fashion house. Timeless unisex garments designed with luxurious fabrics, structural cuts, and architectural tailoring.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- ─── HEADER / NAVIGATION ──────────────────────────────── -->
+  <nav class="navbar transparent" id="main-nav">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo" id="nav-logo">
+        ASMIRE<span>.</span>
+      </a>
+      
+      <div class="navbar-links" id="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="navbar-actions">
+        <!-- Shopping Bag Trigger -->
+        <a href="cart.html" aria-label="View shopping cart" style="position: relative; display: flex; align-items: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <!-- Hamburger Icon for Mobile -->
+        <button class="menu-toggle" aria-label="Toggle mobile menu" id="hamburger-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobile-drawer">
+    <a href="index.html" class="active">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- ─── HERO SECTION ─────────────────────────────────────── -->
+  <header class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-tagline">Autumn / Winter Catalog</span>
+      <h1>Architectural Tailoring <strong>For Every Body</strong></h1>
+      <p class="hero-description">
+        ASMIRE bridges the gap between structured minimalism and relaxed utility. Curated unisex silhouettes constructed from organic fibers designed to drape perfectly.
+      </p>
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-primary btn-lg">Explore Shop</a>
+        <a href="about.html" class="btn btn-outline btn-lg">Our Story</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- ─── CURATED CATEGORIES ───────────────────────────────── -->
+  <section class="section container">
+    <div class="section-header reveal">
+      <h2>Curated Collections</h2>
+      <p>Discover minimal clothing items tailored with genderless structure and clean palettes.</p>
+    </div>
+
+    <div class="grid category-grid">
+      <!-- Category 1 -->
+      <article class="category-card reveal reveal-delay-1">
+        <img class="category-card-img" src="assets/images/cat_tops.jpg" alt="Tops Category" onerror="this.src='https://placehold.co/400x500/111111/FFFFFF/png?text=Tops'">
+        <div class="category-card-overlay">
+          <h3 class="category-card-title">Tops</h3>
+          <a href="shop.html?category=tops" class="category-card-link">
+            Explore Collection
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Category 2 -->
+      <article class="category-card reveal reveal-delay-2">
+        <img class="category-card-img" src="assets/images/cat_bottoms.jpg" alt="Bottoms Category" onerror="this.src='https://placehold.co/400x500/111111/FFFFFF/png?text=Bottoms'">
+        <div class="category-card-overlay">
+          <h3 class="category-card-title">Bottoms</h3>
+          <a href="shop.html?category=bottoms" class="category-card-link">
+            Explore Collection
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Category 3 -->
+      <article class="category-card reveal reveal-delay-3">
+        <img class="category-card-img" src="assets/images/cat_outerwear.jpg" alt="Outerwear Category" onerror="this.src='https://placehold.co/400x500/111111/FFFFFF/png?text=Outerwear'">
+        <div class="category-card-overlay">
+          <h3 class="category-card-title">Outerwear</h3>
+          <a href="shop.html?category=outerwear" class="category-card-link">
+            Explore Collection
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Category 4 -->
+      <article class="category-card reveal reveal-delay-4">
+        <img class="category-card-img" src="assets/images/cat_accessories.jpg" alt="Accessories Category" onerror="this.src='https://placehold.co/400x500/111111/FFFFFF/png?text=Accessories'">
+        <div class="category-card-overlay">
+          <h3 class="category-card-title">Accessories</h3>
+          <a href="shop.html?category=accessories" class="category-card-link">
+            Explore Collection
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─── FEATURED / TRENDING PRODUCTS ────────────────────── -->
+  <section class="section container" style="border-top: 1px solid var(--color-border);">
+    <div class="section-header reveal">
+      <h2>Trending Garments</h2>
+      <p>A handpicked selection of our client favorites. Crafted to transition across seasons.</p>
+    </div>
+
+    <div class="grid trending-grid" id="trending-container">
+      <!-- Loaded dynamically via home.js -->
+    </div>
+    
+    <div style="text-align: center; margin-top: var(--space-3xl);" class="reveal">
+      <a href="shop.html" class="btn btn-outline">View Catalog</a>
+    </div>
+  </section>
+
+  <!-- ─── BRAND PHILOSOPHY ─────────────────────────────────── -->
+  <section class="section philosophy-section">
+    <div class="container philosophy-container">
+      <div class="philosophy-image reveal">
+        <img src="assets/images/philosophy.jpg" alt="Sustainability & Aesthetics" onerror="this.src='https://placehold.co/600x450/111111/FFFFFF/png?text=Aesthetic'">
+      </div>
+      <div class="philosophy-content reveal">
+        <h2>Unisex Design <span>Without Compromise</span></h2>
+        <p>
+          At ASMIRE, we discard traditional sizing norms in search of shape harmony. Every product is engineered to suit various body types, focusing on structural elegance and premium, sustainably sourced fibers.
+        </p>
+        <div class="philosophy-stats">
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Organic Cotton</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Carbon</div>
+            <div class="stat-label">Neutral Flow</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Nepal</div>
+            <div class="stat-label">eSewa Enabled</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">ASMIRE<span>.</span></a>
+          <p>Luxurious essentials designed to frame personality, built with timeless structural details.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Pinterest">PI</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Catalog</h4>
+          <ul>
+            <li><a href="shop.html?category=tops">Tops</a></li>
+            <li><a href="shop.html?category=bottoms">Bottoms</a></li>
+            <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+            <li><a href="shop.html?category=accessories">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="about.html">Our Studio</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">eSewa Checkout Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Newsletter</h4>
+          <p class="text-secondary" style="font-size: var(--text-sm); margin-bottom: var(--space-md);">Subscribe to updates on drops and styling guides.</p>
+          <div class="footer-newsletter">
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
+              <button type="submit">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ASMIRE. Designed by Google DeepMind Team. eSewa sandbox test enabled.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript Libraries -->
+  <script src="data/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

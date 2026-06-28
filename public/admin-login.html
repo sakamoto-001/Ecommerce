@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — ASMIRE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #c5a880;
+      --accent-hover: #dfcfb7;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030303;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #f4f4f5;
+    }
+    .login-wrap {
+      background: rgba(18, 18, 20, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      padding: 48px 44px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .brand-icon {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .brand-icon svg { width: 18px; height: 18px; fill: #09090b; }
+    .brand h1 { font-size: 1.3rem; font-weight: 700; color: #f4f4f5; letter-spacing: -0.01em; }
+    h2 { font-size: 1.5rem; font-weight: 700; color: #f4f4f5; margin-bottom: 6px; letter-spacing: -0.02em; }
+    .subtitle { color: #a1a1aa; font-size: .9rem; margin-bottom: 28px; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-size: .85rem; font-weight: 500; color: #a1a1aa; margin-bottom: 6px; }
+    input {
+      width: 100%; padding: 11px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      font-size: .95rem;
+      font-family: inherit;
+      color: #f4f4f5;
+      transition: all .15s ease;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 0 2px rgba(197, 168, 128, 0.2);
+    }
+    .btn {
+      width: 100%; padding: 13px;
+      background: var(--accent); color: #09090b;
+      border: none; border-radius: 8px;
+      font-size: .95rem; font-weight: 600;
+      font-family: inherit; cursor: pointer;
+      transition: background .15s ease;
+    }
+    .btn:hover { background: var(--accent-hover); }
+    .btn:disabled { background: #52525b; color: #a1a1aa; cursor: not-allowed; }
+    .error-msg {
+      display: none;
+      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #fca5a5; border-radius: 8px;
+      padding: 10px 14px; font-size: .87rem; margin-bottom: 16px;
+    }
+    .error-msg.show { display: block; }
+    .divider { text-align: center; color: #52525b; font-size: .82rem; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h1>Admin.</h1>
+    </div>
+    <h2>Welcome back</h2>
+    <p class="subtitle">Sign in to your admin dashboard</p>
+    <div class="error-msg" id="errorMsg"></div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="admin@example.com" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn" id="loginBtn">Sign In</button>
+    </form>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://dduwjehethttrzdosmhf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkdXdqZWhldGh0dHJ6ZG9zbWhmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4NTc4NjMsImV4cCI6MjA5NzQzMzg2M30.5vHfgNEj1RXmL4ptuvsfKnXg0cyosM15rU-UVpsX3r8';
+
+    // Check already logged in
+    const token = localStorage.getItem('adminToken');
+    if (token) {
+      // Verify token is valid
+      fetch(`${SUPABASE_URL}/auth/v1/user`, {
+        headers: { 'Authorization': `Bearer ${token}`, 'apikey': SUPABASE_ANON_KEY }
+      }).then(r => r.ok && window.location.replace('/admin.html')).catch(() => {});
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const errMsg = document.getElementById('errorMsg');
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      errMsg.classList.remove('show');
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        if (!res.ok || !data.access_token) {
+          throw new Error(data.error_description || data.msg || 'Invalid credentials');
+        }
+
+        // Verify admin role
+        const adminRes = await fetch('/api/admin/stats', {
+          headers: { 'Authorization': `Bearer ${data.access_token}` }
+        });
+
+        if (!adminRes.ok) {
+          const errData = await adminRes.json();
+          throw new Error(errData.error || 'Access denied: not an admin user');
+        }
+
+        localStorage.setItem('adminToken', data.access_token);
+        localStorage.setItem('adminRefreshToken', data.refresh_token || '');
+        window.location.replace('/admin.html');
+      } catch (err) {
+        errMsg.textContent = err.message;
+        errMsg.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    });
+  </script>
+</body>
+</html>

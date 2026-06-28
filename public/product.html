@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Garment Details — ASMIRE</title>
+  <meta name="description" content="Explore detailed specifications, fabric weights, colorways, and sizes for our custom-tailored unisex apparel.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+  <!-- ─── HEADER / NAVIGATION ──────────────────────────────── -->
+  <nav class="navbar solid" id="main-nav">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        ASMIRE<span>.</span>
+      </a>
+      
+      <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="navbar-actions">
+        <a href="cart.html" aria-label="View shopping cart" style="position: relative; display: flex; align-items: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- ─── PAGE HEADER (Breadcrumb navigation) ────────────────── -->
+  <header class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" id="detail-breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="shop.html" id="breadcrumb-category">Shop</a>
+        <span class="separator">/</span>
+        <span class="current" id="breadcrumb-current">Garment Details</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── MAIN PRODUCT SPECIFICATIONS ──────────────────────── -->
+  <main class="container">
+    <div class="product-detail-layout" id="product-detail-container">
+      
+      <!-- Gallery system -->
+      <section class="product-gallery" aria-label="Product Images">
+        <div class="gallery-thumbs" id="gallery-thumbs-container">
+          <!-- Populated dynamically via product.js -->
+        </div>
+        <div class="gallery-main">
+          <img id="gallery-main-img" src="" alt="Garment main image">
+        </div>
+      </section>
+
+      <!-- Specifications and purchasing controls -->
+      <section class="product-info" aria-label="Product Information">
+        <div class="product-meta">
+          <span class="category" id="info-category">tops</span>
+          <h1 id="info-name">Premium Heavyweight Tee</h1>
+        </div>
+
+        <div class="product-price" id="info-price">Rs. 1,200</div>
+
+        <p class="product-desc" id="info-desc">
+          Crafted from organically grown cotton fibers, featuring detailed architectural lines and dropped shoulders.
+        </p>
+
+        <!-- Variants selector -->
+        <div class="variant-selection">
+          <!-- Color choice -->
+          <div>
+            <div class="variant-title">
+              Colour: <span class="selected-value" id="selected-color-val">Charcoal</span>
+            </div>
+            <div class="color-variants" id="color-variants-container">
+              <!-- Populated dynamically via product.js -->
+            </div>
+          </div>
+
+          <!-- Size choice -->
+          <div style="margin-top: var(--space-md);">
+            <div class="variant-title">
+              Size: <span class="selected-value" id="selected-size-val">M</span>
+            </div>
+            <div class="size-variants" id="size-variants-container">
+              <!-- Populated dynamically via product.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Quantity & Add to Cart & Buy Now -->
+        <div class="purchase-actions" style="display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md);">
+          <div class="purchase-controls" style="margin-top: 0; display: flex; gap: var(--space-md); align-items: center;">
+            <div class="qty-selector" style="display: flex; align-items: center; border: 1px solid var(--color-border); border-radius: var(--radius-md); height: 48px; background: var(--color-card);">
+              <button class="qty-btn" id="qty-dec" aria-label="Decrease quantity" style="width: 40px; height: 100%; display: flex; align-items: center; justify-content: center; font-size: var(--text-lg); color: var(--color-text-secondary);">&minus;</button>
+              <input type="number" class="qty-input" id="quantity-input" value="1" min="1" aria-label="Product Quantity" style="width: 40px; border: none; background: transparent; text-align: center; padding: 0; font-weight: 600;">
+              <button class="qty-btn" id="qty-inc" aria-label="Increase quantity" style="width: 40px; height: 100%; display: flex; align-items: center; justify-content: center; font-size: var(--text-lg); color: var(--color-text-secondary);">+</button>
+            </div>
+            <button class="btn btn-outline" id="add-to-cart-btn" style="flex: 1; height: 48px;">Add to Cart</button>
+          </div>
+          <button class="btn btn-primary btn-block" id="buy-now-btn" style="height: 48px;">Buy Now</button>
+        </div>
+
+        <!-- Accordions (collapsible information panels) -->
+        <div class="info-accordion" aria-label="Additional details">
+          <!-- Detail panel 1 -->
+          <article class="accordion-item active">
+            <button class="accordion-trigger">Garment & Fit Details</button>
+            <div class="accordion-content">
+              <p>
+                - Unisex tailored proportions, cut for a relaxed fit.<br>
+                - 100% long-staple organic cotton fleece/jersey.<br>
+                - Heavily finished seams with thick ribbed collars.<br>
+                - Machine wash cold, dry flat to maintain structural shape.
+              </p>
+            </div>
+          </article>
+
+          <!-- Detail panel 2 -->
+          <article class="accordion-item">
+            <button class="accordion-trigger">Shipping & Returns</button>
+            <div class="accordion-content">
+              <p>
+                - Free delivery across major cities in Nepal (Kathmandu, Pokhara, Lalitpur) for orders above Rs. 5,000.<br>
+                - Standard delivery within 2–4 business days.<br>
+                - Hassle-free returns and exchanges within 14 days of receipt. Items must be unworn and in original packaging.
+              </p>
+            </div>
+          </article>
+
+          <!-- Detail panel 3 -->
+          <article class="accordion-item">
+            <button class="accordion-trigger">Payment Gateways</button>
+            <div class="accordion-content">
+              <p>
+                ASMIRE supports real-time payments via **eSewa**. Simply proceed through the checkout flow and select "Pay with eSewa" to securely transfer funds instantly using your sandbox test or active account.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Reviews Segment -->
+    <section class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-3xl); padding-top: var(--space-3xl);">
+      <div class="section-header reveal">
+        <h2>Customer Reviews</h2>
+        <p>Read what our clients say about their ASMIRE purchase, or leave your own review.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: var(--space-3xl); margin-top: var(--space-2xl);" class="reveal">
+        <!-- Review Summary & Form -->
+        <div style="display: flex; flex-direction: column; gap: var(--space-xl);">
+          <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); padding: var(--space-xl); border-radius: var(--radius-lg); text-align: center;">
+            <h3 style="font-size: var(--text-3xl); font-weight: 700; margin-bottom: var(--space-xs);" id="avg-rating-val">0.0</h3>
+            <div id="avg-rating-stars" style="color: var(--color-accent); font-size: var(--text-xl); margin-bottom: var(--space-sm);">☆☆☆☆☆</div>
+            <p style="font-size: var(--text-sm); color: var(--color-text-secondary);" id="review-count-val">Based on 0 reviews</p>
+          </div>
+
+          <!-- Write a Review Form -->
+          <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); padding: var(--space-xl); border-radius: var(--radius-lg);">
+            <h4 style="margin-bottom: var(--space-md); font-size: var(--text-md); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Write a Review</h4>
+            <form id="review-form" style="display: flex; flex-direction: column; gap: var(--space-md);">
+              <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+                <label for="review-name" style="font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase;">Your Name</label>
+                <input type="text" id="review-name" required placeholder="e.g. Sandesh Majhi" style="width: 100%; padding: 11px 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); outline: none;" />
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+                <label for="review-rating" style="font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase;">Rating</label>
+                <select id="review-rating" required style="width: 100%; padding: 11px 14px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); outline: none;">
+                  <option value="5">5 Stars — Excellent</option>
+                  <option value="4">4 Stars — Very Good</option>
+                  <option value="3">3 Stars — Average</option>
+                  <option value="2">2 Stars — Poor</option>
+                  <option value="1">1 Star — Very Poor</option>
+                </select>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--space-xs);">
+                <label for="review-comment" style="font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase;">Comment</label>
+                <textarea id="review-comment" required rows="3" placeholder="Share your experience with this garment..." style="width: 100%; padding: 11px 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); outline: none; resize: vertical;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" style="height: 44px; margin-top: var(--space-xs);">Submit Review</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Reviews List -->
+        <div style="display: flex; flex-direction: column; gap: var(--space-md); max-height: 500px; overflow-y: auto; padding-right: var(--space-sm);" id="reviews-list-container">
+          <!-- Loaded dynamically via product.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products segment -->
+    <section class="section" style="border-top: 1px solid var(--color-border); margin-top: var(--space-3xl);">
+      <div class="section-header reveal">
+        <h2>You May Also Like</h2>
+        <p>Complete the ASMIRE look with complementary shapes and tones.</p>
+      </div>
+      <div class="grid related-grid" id="related-container">
+        <!-- Loaded dynamically via product.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">ASMIRE<span>.</span></a>
+          <p>Luxurious essentials designed to frame personality, built with timeless structural details.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Pinterest">PI</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Catalog</h4>
+          <ul>
+            <li><a href="shop.html?category=tops">Tops</a></li>
+            <li><a href="shop.html?category=bottoms">Bottoms</a></li>
+            <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+            <li><a href="shop.html?category=accessories">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="about.html">Our Studio</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">eSewa Checkout Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Newsletter</h4>
+          <p class="text-secondary" style="font-size: var(--text-sm); margin-bottom: var(--space-md);">Subscribe to updates on drops and styling guides.</p>
+          <div class="footer-newsletter">
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
+              <button type="submit">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ASMIRE. Designed by Google DeepMind Team. eSewa sandbox test enabled.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

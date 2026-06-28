@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout — ASMIRE</title>
+  <meta name="description" content="Securely complete your purchase with eSewa. Fill in shipping information for your ASMIRE order.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/globals.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <!-- ─── HEADER / NAVIGATION ──────────────────────────────── -->
+  <nav class="navbar solid" id="main-nav">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        ASMIRE<span>.</span>
+      </a>
+      
+      <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="navbar-actions">
+        <!-- Shopping Bag Link -->
+        <a href="cart.html" aria-label="View shopping cart" style="position: relative; display: flex; align-items: center;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <!-- Mobile toggle -->
+        <button class="menu-toggle" aria-label="Toggle mobile menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <!-- ─── PAGE HEADER (Breadcrumbs navigation) ────────────────── -->
+  <header class="page-header">
+    <div class="container">
+      <h1>Checkout</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator">/</span>
+        <a href="cart.html">Shopping Bag</a>
+        <span class="separator">/</span>
+        <span class="current">Checkout</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── CHECKOUT FORM LAYOUT ──────────────────────────────── -->
+  <main class="container">
+    <form class="checkout-layout" id="shipping-form">
+      
+      <!-- Left side: forms -->
+      <section class="checkout-form-container" aria-label="Shipping and Payment Information">
+        
+        <!-- Shipping details form -->
+        <div>
+          <h2 style="margin-bottom: var(--space-lg);">Shipping Details</h2>
+          
+          <div class="form-group-grid">
+            <div class="form-group full-width">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" placeholder="John Doe" required>
+              <span class="form-error">Required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" required>
+              <span class="form-error">Required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="980XXXXXXX" required>
+              <span class="form-error">Required</span>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="address">Delivery Address</label>
+              <input type="text" id="address" placeholder="Street, Ward No." required>
+              <span class="form-error">Required</span>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="city">City / District</label>
+              <input type="text" id="city" placeholder="Kathmandu" required>
+              <span class="form-error">Required</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment details select -->
+        <div class="payment-section">
+          <h2 style="margin-bottom: var(--space-md); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-sm); font-size: var(--text-xl); font-weight: 600; text-transform: uppercase;">Payment Method</h2>
+          
+          <!-- eSewa portal option -->
+          <div class="payment-option-card active">
+            <input type="radio" id="payment-esewa" name="payment-method" value="esewa" checked aria-label="Pay with eSewa">
+            <div class="payment-option-details">
+              <span class="payment-option-title">
+                eSewa Portal 
+                <span style="font-size: var(--text-xs); background: var(--color-success); color: var(--color-bg); padding: 2px 6px; border-radius: var(--radius-sm); font-weight: 700; margin-left: 6px;">Instant Payment</span>
+              </span>
+              <span class="payment-option-desc">Secure payment redirection via eSewa merchant gateway portal. Supports sandbox testing accounts.</span>
+            </div>
+          </div>
+
+          <!-- Cash on delivery option -->
+          <div class="payment-option-card" id="payment-cod-card">
+            <input type="radio" id="payment-cod" name="payment-method" value="cod" aria-label="Cash on Delivery">
+            <div class="payment-option-details">
+              <span class="payment-option-title">
+                Cash on Delivery (COD)
+                <span style="font-size: var(--text-xs); background: rgba(201,169,110,0.15); color: var(--color-accent); padding: 2px 6px; border-radius: var(--radius-sm); font-weight: 700; margin-left: 6px;">Pay at Door</span>
+              </span>
+              <span class="payment-option-desc">Pay in cash when your order arrives. Available across major cities in Nepal. Delivery within 2–4 business days.</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right side: mini items summary and action button -->
+      <aside class="summary-sidebar" aria-label="Order Checkout summary">
+        <h2>Items in Order</h2>
+        
+        <div class="checkout-items-list" id="checkout-items-list" style="margin-bottom: var(--space-lg); max-height: 250px; overflow-y: auto;">
+          <!-- Populated dynamically via checkout.js -->
+        </div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="checkout-subtotal">Rs. 0</span>
+        </div>
+
+        <div class="summary-row" id="checkout-promo-row" style="display: none; color: var(--color-success);">
+          <span>Discount (10% Off)</span>
+          <span id="checkout-discount">-Rs. 0</span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping Charge</span>
+          <span id="checkout-shipping">Rs. 0</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total Payable</span>
+          <span id="checkout-total">Rs. 0</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="checkout-submit-btn">
+          Pay with eSewa (<span id="pay-btn-amount">Rs. 0</span>)
+        </button>
+
+        <p class="text-secondary" id="checkout-payment-note" style="font-size: var(--text-xs); text-align: center; margin-top: var(--space-md); line-height: 1.6;">
+          You will be redirected to the secure eSewa portal. Sandbox credentials: ID <code>9806800001</code> / password <code>Nepal@123</code>.
+        </p>
+      </aside>
+
+    </form>
+  </main>
+
+  <!-- ─── FOOTER ───────────────────────────────────────────── -->
+  <footer class="footer" style="margin-top: var(--space-4xl);">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">ASMIRE<span>.</span></a>
+          <p>Luxurious essentials designed to frame personality, built with timeless structural details.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">FB</a>
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Pinterest">PI</a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Catalog</h4>
+          <ul>
+            <li><a href="shop.html?category=tops">Tops</a></li>
+            <li><a href="shop.html?category=bottoms">Bottoms</a></li>
+            <li><a href="shop.html?category=outerwear">Outerwear</a></li>
+            <li><a href="shop.html?category=accessories">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="about.html">Our Studio</a></li>
+            <li><a href="#">Contact Support</a></li>
+            <li><a href="#">eSewa Checkout Guide</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Newsletter</h4>
+          <p class="text-secondary" style="font-size: var(--text-sm); margin-bottom: var(--space-md);">Subscribe to updates on drops and styling guides.</p>
+          <div class="footer-newsletter">
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email Address" required aria-label="Email Address">
+              <button type="submit">Join</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 ASMIRE. Designed by Google DeepMind Team. eSewa sandbox test enabled.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

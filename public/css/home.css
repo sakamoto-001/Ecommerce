@@ -1,0 +1,292 @@
+/* ═══════════════════════════════════════════════════════════
+   ASMIRE — Home Page Styles
+   Hero, Categories, Featured Products, Philosophy
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── HERO SECTION ─────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.85)), url('../assets/images/hero_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.1s ease-out; /* For parallax script speed */
+}
+
+/* Luxury fallback style in case image is missing initially */
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(30, 30, 30, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 var(--space-xl);
+  animation: fadeInUp 1s var(--transition-slow);
+}
+
+.hero-tagline {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+  display: inline-block;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: calc(var(--text-5xl) + 1vw);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+}
+
+.hero-content h1 strong {
+  font-weight: 700;
+  color: var(--color-text);
+  display: block;
+  letter-spacing: 0.05em;
+}
+
+.hero-description {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2xl);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: float 2s infinite ease-in-out;
+}
+
+.scroll-indicator span {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-text-secondary), transparent);
+}
+
+/* ─── CATEGORY SECTION ─────────────────────────────────── */
+.category-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.category-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-slow);
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-border-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.category-card:hover .category-card-img {
+  transform: scale(1.06);
+}
+
+.category-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-xl);
+  transition: background var(--transition-base);
+}
+
+.category-card:hover .category-card-overlay {
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 20%, rgba(10, 10, 10, 0.95) 100%);
+}
+
+.category-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.category-card-link {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast), gap var(--transition-fast);
+}
+
+.category-card:hover .category-card-link {
+  opacity: 1;
+  gap: var(--space-sm);
+}
+
+/* ─── TRENDING GRID ────────────────────────────────────── */
+.trending-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ─── PHILOSOPHY SECTION ─────────────────────────────────── */
+.philosophy-section {
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-elevated) 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.philosophy-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-4xl);
+  align-items: center;
+}
+
+.philosophy-image {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  aspect-ratio: 4 / 3;
+}
+
+.philosophy-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.philosophy-content h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.philosophy-content h2 span {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.philosophy-content p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  margin-bottom: var(--space-2xl);
+  font-weight: 300;
+}
+
+.philosophy-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.stat-item {
+  border-left: 2px solid var(--color-accent);
+  padding-left: var(--space-md);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .category-grid,
+  .trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .philosophy-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: var(--text-4xl);
+  }
+}
+
+@media (max-width: 576px) {
+  .category-grid,
+  .trending-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy-stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
