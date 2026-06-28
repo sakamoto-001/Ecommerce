@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ASMIRE Ecommerce
 
 A premium unisex clothing ecommerce demo built with Express, Supabase, and eSewa payment integration.
@@ -78,3 +79,6 @@ A premium unisex clothing ecommerce demo built with Express, Supabase, and eSewa
 ## GitHub
 
 Repository: https://github.com/sakamoto-001/Ecommerce
+=======
+# Ecommerce
+>>>>>>> 4d6e30cc57f6728eeca64890e2c5b13484e514f7
